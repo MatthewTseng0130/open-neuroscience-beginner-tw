@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Chinese Guidelines for Open Science Research｜Open Neuro for Psy Beginners</title>
+  <meta name="description" content="給心理學初學者的 Open Neuro / Open Science 神經影像資料索引與資料庫導覽。" />
+  <style>
+    :root{
+      --bg:#f5f7fb;
+      --surface:#ffffff;
+      --surface-2:#eef3fb;
+      --text:#172033;
+      --muted:#667085;
+      --line:#dfe6f0;
+      --brand:#3559e0;
+      --brand-2:#6a7ff2;
+      --accent:#0f8b8d;
+      --danger:#a44;
+      --shadow:0 10px 30px rgba(27,39,94,.08);
+      --radius:18px;
+      --max:1180px;
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      font-family: Inter, "Noto Sans TC", "PingFang TC", "Microsoft JhengHei", system-ui, -apple-system, sans-serif;
+      background:linear-gradient(180deg,#f7f9fd 0,#f3f6fb 100%);
+      color:var(--text);
+      line-height:1.7;
+    }
+    a{color:var(--brand);text-decoration:none}
+    a:hover{text-decoration:underline}
+    .wrap{max-width:var(--max);margin:auto;padding:0 24px}
+    .topbar{
+      position:sticky;top:0;z-index:50;
+      backdrop-filter:blur(14px);
+      background:rgba(255,255,255,.86);
+      border-bottom:1px solid rgba(223,230,240,.85);
+    }
+    .topbar .inner{
+      max-width:var(--max);margin:auto;padding:12px 24px;
+      display:flex;align-items:center;justify-content:space-between;gap:20px;
+    }
+    .brand{font-weight:800;letter-spacing:.2px}
+    .nav{display:flex;gap:16px;flex-wrap:wrap;font-size:.93rem}
+    .nav a{color:#3d485c}
+    .hero{
+      padding:72px 0 54px;
+      background:
+        radial-gradient(circle at 15% 20%,rgba(53,89,224,.14),transparent 30%),
+        radial-gradient(circle at 82% 18%,rgba(15,139,141,.11),transparent 25%);
+    }
+    .eyebrow{
+      display:inline-flex;padding:6px 11px;border-radius:999px;
+      background:#e9edff;color:#2d49b9;font-size:.86rem;font-weight:700;
+      margin-bottom:16px;
+    }
+    h1{font-size:clamp(2.2rem,5vw,4.3rem);line-height:1.05;margin:0 0 18px;letter-spacing:-.04em}
+    .lead{font-size:1.18rem;color:#4b5567;max-width:820px;margin:0}
+    .hero-grid{display:grid;grid-template-columns:1.45fr .8fr;gap:30px;align-items:start}
+    .hero-card{
+      background:rgba(255,255,255,.9);border:1px solid var(--line);
+      border-radius:var(--radius);padding:22px;box-shadow:var(--shadow)
+    }
+    .hero-card strong{display:block;margin-bottom:6px}
+    section{padding:52px 0}
+    h2{font-size:2rem;margin:0 0 10px;letter-spacing:-.02em}
+    h3{font-size:1.2rem;margin:0 0 8px}
+    .section-intro{color:var(--muted);max-width:850px;margin:0 0 26px}
+    .panel{
+      background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);
+      padding:24px;box-shadow:var(--shadow)
+    }
+    .controls{
+      display:flex;gap:12px;align-items:center;flex-wrap:wrap;margin:0 0 18px
+    }
+    input[type="search"]{
+      width:min(460px,100%);padding:12px 14px;border:1px solid #cbd5e1;border-radius:12px;
+      font:inherit;background:#fff;outline:none
+    }
+    input[type="search"]:focus{border-color:var(--brand);box-shadow:0 0 0 3px rgba(53,89,224,.12)}
+    .count{font-size:.9rem;color:var(--muted)}
+    .table-wrap{overflow:auto;border:1px solid var(--line);border-radius:14px}
+    table{width:100%;border-collapse:collapse;min-width:840px;background:#fff}
+    th,td{padding:14px 15px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}
+    th{position:sticky;top:0;background:#f8faff;font-size:.86rem;color:#465268;z-index:1}
+    tbody tr:hover{background:#fbfcff}
+    .theme{font-weight:800;white-space:nowrap}
+    .pill{
+      display:inline-block;padding:4px 9px;border-radius:999px;
+      background:#eef2ff;color:#3349b7;font-size:.78rem;margin:2px 4px 2px 0
+    }
+    .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+    .card{
+      background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:20px;
+      box-shadow:0 8px 22px rgba(27,39,94,.05)
+    }
+    .card .kicker{font-size:.8rem;color:var(--brand);font-weight:800;text-transform:uppercase;letter-spacing:.08em}
+    .card p{margin:.45rem 0 0;color:#586174}
+    .repo{display:flex;flex-direction:column;gap:10px}
+    .repo .meta{font-size:.9rem;color:var(--muted)}
+    .note{
+      border-left:4px solid var(--accent);background:#edf9f8;padding:16px 18px;border-radius:12px;color:#244b4c
+    }
+    .footer{padding:42px 0 60px;color:#6b7280;font-size:.9rem}
+    .tagline{display:flex;gap:10px;flex-wrap:wrap;margin-top:18px}
+    .mini{padding:7px 10px;border-radius:10px;background:#fff;border:1px solid var(--line);font-size:.88rem}
+    @media (max-width:900px){
+      .hero-grid,.grid{grid-template-columns:1fr}
+      .nav{display:none}
+      section{padding:38px 0}
+    }
+    @media print{
+      .topbar,.controls{display:none}
+      body{background:#fff}
+      .panel,.card,.hero-card{box-shadow:none}
+      a{color:inherit}
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="inner">
+      <div class="brand">Open Science TW · Psy Beginner Guide</div>
+      <nav class="nav" aria-label="網站導覽">
+        <a href="#index">心理學主題索引</a>
+        <a href="#language">Language Example</a>
+        <a href="#repositories">Dataset Access</a>
+        <a href="#federated">跨資料庫搜尋</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="wrap hero-grid">
+        <div>
+          <span class="eyebrow">Chinese Guidelines for Open Science Research</span>
+          <h1>Open Neuro<br>for Psy Beginners</h1>
+          <p class="lead">以心理學研究者的視角整理開放神經影像資料：從 OpenNeuro 的研究主題索引，到各類 neuroimaging repository 與跨資料庫搜尋工具。</p>
+          <div class="tagline">
+            <span class="mini">MRI / fMRI</span>
+            <span class="mini">PET</span>
+            <span class="mini">EEG / MEG / iEEG</span>
+            <span class="mini">BIDS</span>
+            <span class="mini">Secondary Analysis</span>
+          </div>
+        </div>
+        <aside class="hero-card">
+          <strong>OpenNeuro 是什麼？</strong>
+          <div>OpenNeuro 是一個可下載並重新分析公開原始神經影像資料集的平台。</div>
+          <div class="note" style="margin-top:16px">
+            本頁以「心理學初學者能如何找資料」為主要導向，研究主題分類是實務索引，不代表 OpenNeuro 官方固定分類。
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section id="index">
+      <div class="wrap">
+        <h2>OpenNeuro：心理學研究主題索引</h2>
+        <p class="section-intro">用「研究主題 → 常見 task / keyword → 主要心理歷程」理解 fMRI / MRI dataset。可用下方搜尋框快速找主題、task 或心理歷程。</p>
+        <div class="panel">
+          <div class="controls">
+            <input id="domainSearch" type="search" placeholder="搜尋：language、Stroop、情緒、working memory…" />
+            <span id="domainCount" class="count"></span>
+          </div>
+          <div class="table-wrap">
+            <table id="domainTable">
+              <thead><tr><th>研究主題<br>Theme</th><th>常見 Task 與關鍵字<br>Tasks / Keywords</th><th>主要涉及心理歷程<br>Mental Process</th></tr></thead>
+              <tbody>
+                <tr><td class="theme">語言</td><td>language, reading, lexical decision, semantic judgment, speech, naming, syntax, bilingual</td><td>語言理解、詞彙提取、語意處理、句法、語音處理、語言產出</td></tr>
+                <tr><td class="theme">記憶</td><td>encoding, retrieval, recall, recognition, episodic memory, associative memory</td><td>記憶編碼、儲存、提取、再認、情節記憶</td></tr>
+                <tr><td class="theme">工作記憶</td><td>n-back, working memory, delayed match-to-sample, verbal working memory, visuospatial working memory</td><td>暫時資訊維持、更新、操作、容量限制</td></tr>
+                <tr><td class="theme">注意力</td><td>attention, oddball, sustained attention, selective attention, ANT</td><td>選擇性注意、持續注意、注意定向、警覺</td></tr>
+                <tr><td class="theme">執行功能／認知控制</td><td>Stroop, flanker, task switching, inhibition, conflict, cognitive control</td><td>抑制控制、衝突監控、認知彈性、任務切換</td></tr>
+                <tr><td class="theme">視覺知覺</td><td>visual perception, face, object, scene, motion, visual localizer</td><td>臉孔辨識、物體辨識、視覺運動、場景知覺</td></tr>
+                <tr><td class="theme">聽覺知覺</td><td>auditory, sound, tone, music, speech perception</td><td>聲音辨識、語音知覺、音高與聲學處理</td></tr>
+                <tr><td class="theme">感覺動作／動作控制</td><td>finger tapping, motor, movement, sensorimotor, motor imagery</td><td>動作規劃、執行、感覺—動作整合、動作想像</td></tr>
+                <tr><td class="theme">學習</td><td>learning, conditioning, reinforcement learning, statistical learning, sequence learning</td><td>聯結學習、強化學習、統計規律學習、程序學習</td></tr>
+                <tr><td class="theme">決策</td><td>decision making, choice, risk, gambling, value, reward</td><td>價值計算、風險評估、選擇行為</td></tr>
+                <tr><td class="theme">獎賞／動機</td><td>reward, monetary incentive, anticipation, reinforcement</td><td>獎賞預期、動機、結果評估</td></tr>
+                <tr><td class="theme">情緒</td><td>emotion, affect, emotional faces, fear, negative affect, emotion regulation</td><td>情緒知覺、情緒反應、恐懼、情緒調節</td></tr>
+                <tr><td class="theme">社會認知</td><td>theory of mind, mentalizing, empathy, trust, social interaction</td><td>心智理論、同理心、他人意圖推論、社會判斷</td></tr>
+                <tr><td class="theme">自我相關處理</td><td>self-reference, self-evaluation, autobiographical, self-processing</td><td>自我表徵、自我評價、自傳式認知</td></tr>
+                <tr><td class="theme">疼痛</td><td>pain, thermal pain, nociception, painful stimulation</td><td>疼痛知覺、威脅評估、疼痛調節</td></tr>
+                <tr><td class="theme">內感受</td><td>interoception, heartbeat, breathing, visceral</td><td>身體內部感覺、心跳覺察、身體訊號監測</td></tr>
+                <tr><td class="theme">意識與覺察</td><td>awareness, conscious perception, masking, subliminal, unseen</td><td>意識知覺、閾下處理、知覺覺察</td></tr>
+                <tr><td class="theme">時間知覺</td><td>timing, interval estimation, temporal judgment</td><td>時距估計、時間判斷、順序處理</td></tr>
+                <tr><td class="theme">數量與數學認知</td><td>arithmetic, number comparison, calculation, magnitude</td><td>數量表徵、算術、大小比較、數學推理</td></tr>
+                <tr><td class="theme">空間認知</td><td>navigation, spatial memory, mental rotation, spatial attention</td><td>空間定位、心理旋轉、導航、空間記憶</td></tr>
+                <tr><td class="theme">閱讀與識字</td><td>reading, word reading, pseudoword, orthographic processing</td><td>字詞辨識、正字法、閱讀理解、拼讀</td></tr>
+                <tr><td class="theme">發展</td><td>child, adolescent, development, maturation</td><td>兒童與青少年認知發展、語言發展、腦功能成熟</td></tr>
+                <tr><td class="theme">老化</td><td>aging, older adults, cognitive aging</td><td>認知老化、記憶下降、功能代償</td></tr>
+                <tr><td class="theme">臨床／精神病理</td><td>depression, anxiety, schizophrenia, ADHD, autism, OCD, PTSD</td><td>症狀相關認知、情緒、社會與控制歷程</td></tr>
+                <tr><td class="theme">神經心理／腦傷</td><td>stroke, aphasia, lesion, traumatic brain injury</td><td>語言障礙、認知缺損、功能重組</td></tr>
+                <tr><td class="theme">成癮／物質使用</td><td>addiction, alcohol, nicotine, drug cue, craving</td><td>渴求、獎賞敏感性、控制失衡</td></tr>
+                <tr><td class="theme">睡眠與疲勞</td><td>sleep, sleep deprivation, fatigue</td><td>覺醒、注意、記憶與認知效率</td></tr>
+                <tr><td class="theme">自然情境認知</td><td>movie watching, story listening, audiobook, naturalistic</td><td>連續語言、情境理解、社會認知、真實世界認知</td></tr>
+                <tr><td class="theme">靜息態</td><td>resting-state, rest</td><td>功能連結、內在腦網絡；較不直接對應單一 task 心理歷程</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="language">
+      <div class="wrap">
+        <h2>An Example of Language Domain</h2>
+        <p class="section-intro">如果以 language 作為 OpenNeuro 搜尋主題，可再依認知歷程細分為下列研究方向。</p>
+        <div class="grid">
+          <div class="card"><span class="kicker">Language</span><h3>語言理解</h3><p><b>Tasks：</b>sentence comprehension, listening, reading comprehension</p><p><b>歷程：</b>語意整合、句子理解</p></div>
+          <div class="card"><span class="kicker">Language</span><h3>語言產出</h3><p><b>Tasks：</b>speech production, naming, verbal generation</p><p><b>歷程：</b>詞彙提取、口語產出</p></div>
+          <div class="card"><span class="kicker">Language</span><h3>雙語歷程</h3><p><b>Tasks：</b>L1/L2, language switching, translation</p><p><b>歷程：</b>跨語言控制、語言切換</p></div>
+          <div class="card"><span class="kicker">Language</span><h3>詞彙處理</h3><p><b>Tasks：</b>lexical decision, word reading, pseudoword reading</p><p><b>歷程：</b>字詞辨識、詞彙存取</p></div>
+          <div class="card"><span class="kicker">Language</span><h3>語意處理</h3><p><b>Tasks：</b>semantic judgment, semantic association, category decision</p><p><b>歷程：</b>語意記憶、概念處理</p></div>
+          <div class="card"><span class="kicker">Language</span><h3>聲韻覺識</h3><p><b>Tasks：</b>phoneme, rhyme, speech perception, auditory language</p><p><b>歷程：</b>音韻分析、語音知覺</p></div>
+          <div class="card"><span class="kicker">Language</span><h3>句法處理</h3><p><b>Tasks：</b>grammaticality judgment, syntax, sentence structure</p><p><b>歷程：</b>句法分析、文法處理</p></div>
+          <div class="card"><span class="kicker">Language</span><h3>語言發展</h3><p><b>Tasks：</b>language learning, vocabulary learning, children, adolescents</p><p><b>歷程：</b>語言習得、發展變化</p></div>
+          <div class="card"><span class="kicker">Language</span><h3>自然情境語言處理</h3><p><b>Tasks：</b>story listening, narrative comprehension, audiobook, naturalistic listening</p><p><b>歷程：</b>語篇理解、連續語言處理、自然情境認知</p></div>
+          <div class="card"><span class="kicker">Language</span><h3>認知控制</h3><p><b>Tasks：</b>Stroop, verbal working memory, task switching, language control</p><p><b>歷程：</b>抑制控制、工作記憶、語言切換</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="repositories">
+      <div class="wrap">
+        <h2>Dataset Access 整理｜Neuroimaging</h2>
+        <p class="section-intro">依資料類型整理常見開放神經科學 repository，並保留資料來源與地域代表性的注意事項。</p>
+
+        <div class="panel" style="margin-bottom:18px">
+          <h3>1. 跨模態大型 Repository</h3>
+          <div class="grid" style="margin-top:14px">
+            <article class="card repo">
+              <span class="kicker">Cross-modality</span>
+              <h3>OpenNeuro</h3>
+              <div><b>資料：</b>MRI、fMRI、PET、EEG、MEG、iEEG</div>
+              <div><b>特色：</b>以 BIDS 為核心的開放神經影像資料庫，適合 secondary analysis。</div>
+              <div class="meta">地域性：資料來源較集中於北美、西歐與高收入研究機構。</div>
+              <a href="https://openneuroscience.org/Resources/OpenNeuro" target="_blank" rel="noopener">開啟資源 ↗</a>
+            </article>
+          </div>
+        </div>
+
+        <div class="panel" style="margin-bottom:18px">
+          <h3>2. MRI / fMRI 為主</h3>
+          <div class="grid" style="margin-top:14px">
+            <article class="card repo"><span class="kicker">MRI</span><h3>AfNiA</h3><div>非洲 brain MRI archive，目前資料數不多。</div><div class="meta">地區：非洲；部分要求提供研究目的。</div><a href="https://afnia.mailab.io/" target="_blank" rel="noopener">前往網站 ↗</a></article>
+            <article class="card repo"><span class="kicker">MRI / fMRI</span><h3>INDI</h3><div>包含 ABIDE、ADHD-200、CoRR 等大型資料集。</div><div class="meta">主要集中北美、歐洲與部分亞洲大型研究中心。</div><a href="http://fcon_1000.projects.nitrc.org/" target="_blank" rel="noopener">前往網站 ↗</a></article>
+            <article class="card repo"><span class="kicker">Structural MRI / PET</span><h3>OASIS</h3><div>ageing、dementia、Alzheimer’s disease 的重要公開資料集。</div><div class="meta">主要為美國人口，跨族群使用需注意外部效度。</div><a href="https://openneuroscience.org/Resources/OASIS" target="_blank" rel="noopener">查看資源 ↗</a></article>
+            <article class="card repo"><span class="kicker">MRI</span><h3>Public-nEUro</h3><div>BIDS 格式、GDPR-compliant 的歐洲腦影像平台。</div><div class="meta">明顯偏向歐洲人口與研究機構。</div><a href="https://openneuroscience.org/Resources/Public-nEUro" target="_blank" rel="noopener">查看資源 ↗</a></article>
+            <article class="card repo"><span class="kicker">Neuroimaging</span><h3>NITRC</h3><div>同時收錄 datasets、software 與 computational resources。</div><div class="meta">資料來源異質，地域代表性依個別 dataset 而定。</div><a href="https://openneuroscience.org/Resources/NITRC" target="_blank" rel="noopener">查看資源 ↗</a></article>
+          </div>
+        </div>
+
+        <div class="panel" style="margin-bottom:18px">
+          <h3>3. PET / 多模態影像</h3>
+          <div class="grid" style="margin-top:14px">
+            <article class="card repo"><span class="kicker">PET / MRI / Genetics</span><h3>CIMBI</h3><div>適合 serotonin、receptor 與 molecular brain imaging 研究。</div><div class="meta">主要為丹麥／北歐人口。</div><a href="https://openneuroscience.org/Resources/CIMBI" target="_blank" rel="noopener">查看資源 ↗</a></article>
+            <article class="card repo"><span class="kicker">MRI / Clinical / Genomic</span><h3>C-BIG</h3><div>整合神經影像、臨床、基因與生物樣本。</div><div class="meta">主要來自加拿大／北美醫療體系。</div><a href="https://openneuroscience.org/Resources/C-BIG" target="_blank" rel="noopener">查看資源 ↗</a></article>
+            <article class="card repo"><span class="kicker">Controlled Access</span><h3>NIMH Data Archive</h3><div>MRI、fMRI、genetics、behavioral、clinical；包含 ABCD 等大型研究。</div><div class="meta">高度以美國人口為核心。</div><a href="https://openneuroscience.org/Resources/NIMH-Data-Archive" target="_blank" rel="noopener">查看資源 ↗</a></article>
+            <article class="card repo"><span class="kicker">Multimodal Infrastructure</span><h3>EBRAINS</h3><div>MRI、electrophysiology、atlas、simulation 等。</div><div class="meta">歐盟／歐洲中心化，Global South representation 較不足。</div><a href="https://openneuroscience.org/Resources/EBRAINS" target="_blank" rel="noopener">查看資源 ↗</a></article>
+          </div>
+        </div>
+
+        <div class="panel" style="margin-bottom:18px">
+          <h3>4. EEG / MEG / iEEG 為主</h3>
+          <div class="grid" style="margin-top:14px">
+            <article class="card repo"><span class="kicker">EEG / MEG / iEEG</span><h3>NEMAR</h3><div>專門處理 electrophysiology，並提供 HPC processing。</div><div class="meta">很多資料來自 OpenNeuro；MEG 尤其集中於高收入國家。</div><a href="https://openneuroscience.org/Resources/NEMAR" target="_blank" rel="noopener">查看資源 ↗</a></article>
+            <article class="card repo"><span class="kicker">EEG / MRI</span><h3>ANC – Austrian NeuroCloud</h3><div>FAIR、BIDS、HED compliant，metadata 與事件標記標準化程度高。</div><div class="meta">主要與奧地利／中歐研究網絡相關。</div><a href="https://openneuroscience.org/Resources/ANC" target="_blank" rel="noopener">查看資源 ↗</a></article>
+            <article class="card repo"><span class="kicker">MEG / MRI / Behavioral</span><h3>RDR – Radboud Data Repository</h3><div>Radboud University / Donders Institute institutional repository。</div><div class="meta">主要集中於荷蘭／西歐。</div><a href="https://openneuroscience.org/RDR" target="_blank" rel="noopener">查看資源 ↗</a></article>
+          </div>
+        </div>
+
+        <div class="panel">
+          <h3>5. Statistical Maps / Meta-analysis</h3>
+          <div class="grid" style="margin-top:14px">
+            <article class="card repo"><span class="kicker">Statistical Maps</span><h3>NeuroVault</h3><div>儲存 unthresholded statistical maps、atlases、parcellations，適合 image-based meta-analysis。</div><div class="meta">demographic / geographic metadata 通常較有限。</div><a href="https://openneuroscience.org/Resources/NeuroVault" target="_blank" rel="noopener">查看資源 ↗</a></article>
+            <article class="card repo"><span class="kicker">Meta-analysis</span><h3>Neurosynth</h3><div>以 fMRI activation coordinates / literature data 建立 brain region 與 cognitive concept 關聯。</div><div class="meta">會繼承既有文獻的 publication bias 與 Western / WEIRD sampling bias。</div><a href="https://openneuroscience.org/Resources/Neurosynth" target="_blank" rel="noopener">查看資源 ↗</a></article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="federated">
+      <div class="wrap">
+        <h2>跨資料庫搜尋引擎</h2>
+        <div class="panel">
+          <article class="card repo" style="max-width:760px">
+            <span class="kicker">Federated Data Discovery</span>
+            <h3>Neurobagel</h3>
+            <div><b>類型：</b>Federated data discovery / metadata harmonization</div>
+            <div><b>特色：</b>跨 repository 搜尋符合年齡、診斷、影像 modality 等條件的受試者，並將不同資料庫 metadata 標準化。</div>
+            <a href="https://neurobagel.org/" target="_blank" rel="noopener">前往 Neurobagel ↗</a>
+          </article>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="wrap">
+      <b>Open Science Research · Traditional Chinese beginner guide</b><br>
+      內容依工作坊整理稿轉製為單頁網站；若作為正式公開指南，建議後續再逐筆確認各 repository 的存取政策與最新描述。
+    </div>
+  </footer>
+
+  <script>
+    const input = document.getElementById('domainSearch');
+    const rows = [...document.querySelectorAll('#domainTable tbody tr')];
+    const count = document.getElementById('domainCount');
+
+    function updateCount(){
+      const visible = rows.filter(r => r.style.display !== 'none').length;
+      count.textContent = `顯示 ${visible} / ${rows.length} 個主題`;
+    }
+    input.addEventListener('input', () => {
+      const q = input.value.trim().toLowerCase();
+      rows.forEach(row => {
+        const text = row.textContent.toLowerCase();
+        row.style.display = text.includes(q) ? '' : 'none';
+      });
+      updateCount();
+    });
+    updateCount();
+  </script>
+</body>
+</html>
